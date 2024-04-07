@@ -10,7 +10,7 @@ function App() {
           Some nice logo!
         </p>
         <a
-          className="App-link"
+          className="App-links"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
