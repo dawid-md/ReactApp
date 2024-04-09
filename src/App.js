@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
+const {env} = process
 
 function App() {
-  console.log("hello");
-  const endpoint = process.env.REACT_APP_COSMOS_ENDPOINT;
+  const endpoint = env.REACT_APP_COSMOS_ENDPOINT;
   console.log(endpoint);
-  const key = process.env.REACT_APP_COSMOS_KEY;
+  const key = env.REACT_APP_COSMOS_KEY;
   console.log(key);
   const client = new CosmosClient({ endpoint, key });
 
