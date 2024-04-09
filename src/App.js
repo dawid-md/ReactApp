@@ -5,9 +5,11 @@ import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
 
 function App() {
-
+  console.log("hello");
   const endpoint = process.env.REACT_APP_COSMOS_ENDPOINT;
+  console.log(endpoint);
   const key = process.env.REACT_APP_COSMOS_KEY;
+  console.log(key);
   const client = new CosmosClient({ endpoint, key });
 
   const database = client.database("cctasks");
