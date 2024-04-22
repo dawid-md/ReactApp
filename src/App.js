@@ -36,8 +36,7 @@ function App() {
   async function createItem(newItem) {
     try {
         const { resource: createdItem } = await container.items.create(newItem);
-        // setItems(prevItems => [...prevItems, createdItem]);
-        queryItems()
+        setItems(prevItems => [...prevItems, createdItem]);
     } catch (error) {
         console.error('Error adding new item:', error);
     }
