@@ -1,11 +1,19 @@
-.App-header {
+.home-container{
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+  width: 100%;
+  height: 100%;
+}
+
+.left-panel{
+  width: 100%;
+  min-width: 240px;
+  height: 100%;
   background-color: #41454d;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+
+.home-content{
+  width: 100%;
+  height: 100%;
 }
 

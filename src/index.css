@@ -14,6 +14,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  height: 100vh;    /* it is also necessary because children element need 'explicit' height of parent defined, so min-height alone could not be enough */
+  width: 100%;
+}
+
+#root{
+  width: 100%;
+  height: 100%;
 }
 
 code {
