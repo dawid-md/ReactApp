@@ -62,7 +62,7 @@ function App() {
 
   useEffect(() => {
     queryItems()
-  }, [])
+  }, [queryItems])
 
   return (
       <BrowserRouter>
