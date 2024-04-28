@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
-import { useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 const newItem = {
   name: 'Do the laundry',
@@ -11,7 +11,7 @@ const newItem = {
 }
 
 const updatedFields = {
-  id: '01',
+  id: '232',
   name: 'Do the bjork',
   assignedTo: 'Jane'
 }
@@ -25,13 +25,13 @@ function App() {
   const database = client.database("cctasks")
   const container = database.container("ccdb2024")
 
-  async function queryItems() {
+  const queryItems = useCallback(async () => {
     const { resources: items } = await container.items
       .query("SELECT * from c")
       .fetchAll();
       setItems(items)
       console.log(items)
-  }
+  }, [container.items])
 
   async function createItem(newItem) {
     try {
@@ -60,9 +60,9 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   queryItems()
-  // }, [queryItems])
+  useEffect(() => {
+    queryItems()
+  }, [queryItems])
 
   return (
       <BrowserRouter>
