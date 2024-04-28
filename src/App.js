@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const newItem = {
   name: 'Do the laundry',
@@ -60,9 +60,9 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    queryItems()
-  }, [queryItems])
+  // useEffect(() => {
+  //   queryItems()
+  // }, [queryItems])
 
   return (
       <BrowserRouter>
