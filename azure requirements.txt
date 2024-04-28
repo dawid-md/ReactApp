@@ -1,0 +1,3 @@
+staticwebapp.config.json is required for correct routing on static react page
+credentials are stored on github secrets
+azure cosmos db has to have proper names
