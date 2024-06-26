@@ -4,19 +4,20 @@ import Home from './pages/Home/Home';
 import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
 import { useEffect, useState, useCallback, useContext } from 'react';
+import Panel from './components/Panel/Panel';
 
 const newItem = {
   project: 'IP',
   stream: 'R2R',
   assignee: 'David Madrzyk',
-  taskName: 'Do the laundry',
+  taskName: 'Do the laundry 2',
   priority: 'High',
   start: '2022-10-01',
   due: '2022-10-01',
-  status: 'In Progress',
+  status: 'Not Started',
   category: 'Home',
   validator: 'John Doe',
-  description: 'Do the laundry one more time'
+  description: 'Do the laundry one more time 2'
 }
 
 const updatedFields = {
@@ -87,17 +88,22 @@ function App() {
 
 
   return (
+      <div className='App'>
+      <Panel />
       <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home items={items} deleteItem={deleteItem} />} />
+            <Route path="/" element={<Home projects={projects} items={items} deleteItem={deleteItem} />} />
             <Route path="/mytasks" element={<MyTasks />} />
           </Routes>
-          <button onClick={queryItems}>Query Items</button>
-          <button onClick={() => createItem(newItem)}>Create Item</button>
-          <button onClick={() => deleteItem('')}>Delete Item</button>
-          <button onClick={() => updateItem('1c62ccea-2d7a-4b91-819f-ee930a6beca3', updatedFields)}>Update Item</button>
       </BrowserRouter>
+      <button onClick={() => createItem(newItem)}>Create Item</button>
+      </div>
   );
 }
 
 export default App;
+
+          {/* <button onClick={queryItems}>Query Items</button>
+          <button onClick={() => createItem(newItem)}>Create Item</button>
+          <button onClick={() => deleteItem('')}>Delete Item</button>
+          <button onClick={() => updateItem('1c62ccea-2d7a-4b91-819f-ee930a6beca3', updatedFields)}>Update Item</button> */}

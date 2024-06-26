@@ -1,20 +1,13 @@
-export default function Home({ items, deleteItem }) {
-    console.log(items);
+import Project from "../../components/Project/Project.js"
 
+export default function Home({ projects, items, deleteItem }) {
     return (
-        <div className="home-container">
-            <div className="left-panel">
-
-            </div>
-            <div className="home-content">
-                {items.map((item) => (
-                    <div key={item.id} className="task">
-                        <h3>{item.id}</h3>
-                        <p>{item.name}</p>
-                        <button onClick={() => deleteItem(item.id)}>delete</button>
-                    </div>
+        <>
+            <div className="home">
+                {projects.map((project) => (
+                    <Project key={project} items={items} deleteProject={deleteItem} />
                 ))}
             </div>
-        </div>
+        </>
     );
 }
