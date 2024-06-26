@@ -3,11 +3,20 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
 
 const newItem = {
-  name: 'Do the laundry',
-  assignedTo: 'John Doe',
+  project: 'IP',
+  stream: 'R2R',
+  assignee: 'David Madrzyk',
+  taskName: 'Do the laundry',
+  priority: 'High',
+  start: '2022-10-01',
+  due: '2022-10-01',
+  status: 'In Progress',
+  category: 'Home',
+  validator: 'John Doe',
+  description: 'Do the laundry one more time'
 }
 
 const updatedFields = {
@@ -21,16 +30,17 @@ function App() {
   const key = process.env.REACT_APP_COSMOS_KEY
   const client = new CosmosClient({ endpoint, key })
   const [items, setItems] = useState([])
+  const [projects, setProjects] = useState([])
 
   const database = client.database("cctasks")
   const container = database.container("ccdb2024")
 
-  const queryItems = useCallback(async () => {
+  const queryItems = useCallback(async () => {  //useCallback just for testing, doesn't need actually
     const { resources: items } = await container.items
       .query("SELECT * from c")
       .fetchAll();
       setItems(items)
-      console.log(items)
+      setAllProjects(items)
   }, [container.items])
 
   async function createItem(newItem) {
@@ -62,17 +72,29 @@ function App() {
 
   useEffect(() => {
     queryItems()
-  }, [queryItems])
+  }, [])
+
+  const setAllProjects = (items) => {
+    const allProjects = []
+    console.log(items);
+    items.map((item) => {
+      if(allProjects.includes(item.project) === false) {
+        allProjects.push(item.project)
+      }
+    })
+    setProjects(allProjects)
+  }
+
 
   return (
       <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home items={items} />} />
+            <Route path="/" element={<Home items={items} deleteItem={deleteItem} />} />
             <Route path="/mytasks" element={<MyTasks />} />
           </Routes>
           <button onClick={queryItems}>Query Items</button>
           <button onClick={() => createItem(newItem)}>Create Item</button>
-          <button onClick={() => deleteItem('01')}>Delete Item</button>
+          <button onClick={() => deleteItem('')}>Delete Item</button>
           <button onClick={() => updateItem('1c62ccea-2d7a-4b91-819f-ee930a6beca3', updatedFields)}>Update Item</button>
       </BrowserRouter>
   );

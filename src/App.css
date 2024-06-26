@@ -17,3 +17,7 @@
   height: 100%;
 }
 
+.task{
+  display: flex;
+  gap: 10px;
+}
