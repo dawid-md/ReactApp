@@ -5,6 +5,7 @@ import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
 import { useEffect, useState, useCallback, useContext } from 'react';
 import Panel from './components/Panel/Panel';
+import { v4 as uuidv4 } from 'uuid';
 
 const newItem = {
   project: 'IP',
@@ -46,6 +47,7 @@ function App() {
 
   async function createItem(newItem) {
     try {
+        newItem.id = uuidv4();
         const { resource: createdItem } = await container.items.create(newItem);
         setItems(prevItems => [...prevItems, createdItem]);
     } catch (error) {
