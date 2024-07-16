@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import MyTasks from './pages/MyTasks/MyTasks';
 import { CosmosClient } from '@azure/cosmos';
-import { useEffect, useState, useCallback, useContext } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Panel from './components/Panel/Panel';
 import { v4 as uuidv4 } from 'uuid';
 
 const newItem = {
-  project: 'IP',
+  project: 'MMK',
   stream: 'R2R',
   assignee: 'David Madrzyk',
   taskName: 'Do the laundry 2',

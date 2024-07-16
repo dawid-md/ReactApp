@@ -1,23 +1,48 @@
-export default function Project({ items, deleteProject }) {
+export default function Project({ items, deleteItem, editedItemID, seteditedItemID }) {
     return (
         <div className="project">
-            {items.map((item) => (
-                <div key={item.id} className="task">
-                    <p>{item.id}</p>
-                    <p>{item.project}</p>
-                    <p>{item.stream}</p>
-                    <p>{item.assignee}</p>
-                    <p>{item.taskName}</p>
-                    <p>{item.priority}</p>
-                    <p>{item.start}</p>
-                    <p>{item.due}</p>
-                    <p>{item.status}</p>
-                    <p>{item.category}</p>
-                    <p>{item.validator}</p>
-                    <p>{item.description}</p>
-                    <button onClick={() => deleteProject(item.id)}>delete</button>
-                </div>
-            ))}
+            <table>
+                <thead>
+                    <tr>
+                        {/* <th>ID</th> */}
+                        <th>Project</th>
+                        <th>Stream</th>
+                        <th>Assignee</th>
+                        <th>Task Name</th>
+                        <th>Priority</th>
+                        <th>Start</th>
+                        <th>Due</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Validator</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map((item) => (
+                        <tr key={item.id}>
+                            {/* <td>{item.id}</td> */}
+                            <td>{item.project}</td>
+                            <td>{item.stream}</td>
+                            <td>{item.assignee}</td>
+                            <td>{item.taskName}</td>
+                            <td>{item.priority}</td>
+                            <td>{item.start}</td>
+                            <td>{item.due}</td>
+                            <td>{item.status}</td>
+                            <td>{item.category}</td>
+                            <td>{item.validator}</td>
+                            <td>{item.description}</td>
+                            <td>
+                                <button onClick={() => deleteItem(item.id)}>Delete</button>
+                                {(!editedItemID || editedItemID !== item.id) && <button onClick={() => seteditedItemID(item.id)}>Edit</button>}
+                                {editedItemID && editedItemID === item.id && <button onClick={() => seteditedItemID(null)}>Cancel</button>}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
-    )
+    );
 }
