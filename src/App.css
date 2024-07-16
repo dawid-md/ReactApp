@@ -3,19 +3,16 @@
   grid-template-columns: 12% 88%;
   height: 100%;
 }
-
 .home{
   width: 100%;
   height: 100%;
 }
-
 .panel{
   width: 100%;
   min-width: 200px;
   height: 100%;
   background-color: #41454d;
 }
-
 .task{
   display: flex;
   gap: 10px;
