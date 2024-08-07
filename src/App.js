@@ -45,7 +45,7 @@ function App() {
       setAllProjects(items)
   }, [container.items])
 
-  async function createItem(newItem) {
+  async function createItem() {
     try {
         newItem.id = uuidv4();
         const { resource: createdItem } = await container.items.create(newItem);
@@ -88,17 +88,16 @@ function App() {
     setProjects(allProjects)
   }
 
-
   return (
       <div className='App'>
       <Panel />
       <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home projects={projects} items={items} deleteItem={deleteItem} />} />
+            <Route path="/" element={<Home projects={projects} items={items} createItem={createItem} deleteItem={deleteItem} />} />
             <Route path="/mytasks" element={<MyTasks />} />
           </Routes>
       </BrowserRouter>
-      <button onClick={() => createItem(newItem)}>Create Item</button>
+      {/* <button onClick={() => createItem(newItem)}>Create Item</button> */}
       </div>
   );
 }

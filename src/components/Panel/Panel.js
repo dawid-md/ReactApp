@@ -1,5 +1,10 @@
 export default function Panel() {
     return (
-        <div className="panel"></div>
+        <div className="panel">
+            <ul>
+                <li>Home</li>
+                <li>My Tasks</li>
+            </ul>
+        </div>
     )
 }
